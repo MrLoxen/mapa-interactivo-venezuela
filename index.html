@@ -1,0 +1,63 @@
+<!--
+  Proyecto: Mapa Interactivo de Venezuela
+  Autor: Manuel Fereira
+  Descripción: Estructura base de la aplicación. Integra las bibliotecas externas
+  (Leaflet para mapas, Turf.js para geometría, Google Fonts) y define los contenedores 
+  principales de la interfaz de usuario.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo de Venezuela</title>
+  
+  <!-- Hojas de estilo externas e internas -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Librería Turf.js para calcular matemáticas espaciales (punto dentro de polígono) -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+</head>
+<body>
+
+  <!-- Pantalla de inicio (HUD) con animación de bienvenida -->
+  <div id="intro-screen">
+    <h1>Mapa Interactivo de Venezuela</h1>
+    <p>Explora la cultura, turismo y curiosidades de cada estado</p>
+    <button id="enter-btn">Entrar al mapa</button>
+  </div>
+
+  <!-- Contenedor principal donde Leaflet inyectará el mapa -->
+  <div id="map"></div>
+  
+  <!-- Panel lateral dinámico para mostrar la información del estado seleccionado -->
+  <div id="info"><h2>Haz clic en un estado</h2></div>
+  
+  <!-- Tooltip emergente que sigue al cursor (hover) -->
+  <div id="tooltip" class="state-tooltip"></div>
+
+  <!-- Controles flotantes del reproductor de música tradicional -->
+  <div id="music-controls">
+    <button id="music-toggle">▶</button>
+    <div id="volume-control">
+      <span style="font-size: 12px;">🔈</span>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+    <div class="music-info">Música Venezolana</div>
+  </div>
+
+  <!-- Etiqueta de audio oculta en el DOM -->
+  <audio id="background-music" loop>
+    <source src="venezuela_music.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <!-- Scripts funcionales separados por responsabilidad -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="estadosInfo.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
